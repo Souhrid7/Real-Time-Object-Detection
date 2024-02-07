@@ -20,6 +20,10 @@ function gotResults(error,result) {
   else if(result[0].confidence>0.5 && previous_result!=result[0].label) {
     console.log(result)
     previous_result=result[0].label
+    s=window.speechSynthesis;
+    data="Object Detected is "+result[0].label
+    u=new SpeechSynthesisUtterance(data)
+    s.speak(u)
     document.getElementById('result_object_name').innerHTML="Object Name: "+result[0].label
     document.getElementById('result_object_accuracy').innerHTML="Accuracy: "+(result[0].confidence.toFixed(3)*100)+" %"
   }
